@@ -120,12 +120,12 @@ function drawBackground(options) {
      */
    var i = 0;
 
-    options.ctx.globalAlpha = 0.2;
+    //options.ctx.globalAlpha = 0.2;
     options.ctx.fillStyle = "rgb(0,0,0)";
     //options.ctx.fillStyle = "rgb(255, 255, 255)";
 
     // Draw semi-transparent circles
-    for (i = 170; i < 180; i++) {
+    for (i = 180; i < 210; i++) {
         options.ctx.beginPath();
 
         options.ctx.arc(options.center.X,
@@ -297,10 +297,10 @@ function drawTextMarkers(options) {
    // for (iTick = 10; iTick < 180; iTick += 20) {
         innerTickX = gaugeOptions.radius - (Math.cos(degToRad(iTick)) * gaugeOptions.radius);
         innerTickY = gaugeOptions.radius - (Math.sin(degToRad(iTick)) * gaugeOptions.radius);
-       console.log(iTick)
+      // console.log(iTick)
         // Some cludging to center the values (TODO: Improve)
         if (iTick <= 10) {
-            options.ctx.fillText(tickTexts[0], (options.center.X - gaugeOptions.radius - 12) + innerTickX,
+            options.ctx.fillText(tickTexts[0], (options.center.X - gaugeOptions.radius - 12) + innerTickX- 35,
                     (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY + 5);
         } else if (iTick <= 50) {
             options.ctx.fillText(tickTexts[1], (options.center.X - gaugeOptions.radius - 12) + innerTickX - 5,
@@ -320,6 +320,8 @@ function drawTextMarkers(options) {
             options.ctx.fillText(iTickToPrint, (options.center.X - gaugeOptions.radius - 12) + innerTickX + 15,
                     (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY + 5);
         }*/
+        console.log( (options.center.X - gaugeOptions.radius - 12) + innerTickX + 10, (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY)
+
        // options.ctx.fillStyle = "#FF0000";
         // MPH increase by 10 every 20 degrees
         //iTickToPrint += Math.round(2160 / 9);
@@ -364,9 +366,9 @@ function drawSpeedometerColourArc(options) {
         endOfYellow = 80
         endOfLightGreen = 220;
 
-    console.log( (Math.PI + (Math.PI / 360 * startOfGreen)),  0 - (Math.PI / 360 * 10))
-    console.log( (Math.PI + (Math.PI / 360 * endOfGreen)),  0 - (Math.PI / 360 * 10))
-    console.log( (Math.PI + (Math.PI / 360 * endOfOrange)),  0 - (Math.PI / 360 * 10))
+  /* console.log( (Math.PI + (Math.PI / 360 * startOfGreen)),  0 - (Math.PI / 360 * 10))
+   console.log( (Math.PI + (Math.PI / 360 * endOfGreen)),  0 - (Math.PI / 360 * 10))
+    console.log( (Math.PI + (Math.PI / 360 * endOfOrange)),  0 - (Math.PI / 360 * 10))*/
 
 /*         82,240,55
         198, 111, 0 */
@@ -514,7 +516,7 @@ function draw() {
         drawBackground(options);
 
         // Draw tick marks
-        drawTicks(options);
+       // drawTicks(options);
 
         // Draw labels on markers
         drawTextMarkers(options);
