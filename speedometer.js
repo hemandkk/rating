@@ -359,19 +359,26 @@ function drawSpeedometerColourArc(options) {
      */
 
     var startOfGreen = 10,
-        endOfGreen = 200,
-        endOfOrange = 280,
-        endOfYellow = 150
-        endOfLightGreen = 250;
+        endOfGreen = 150,
+        endOfOrange = 285,
+        endOfYellow = 80
+        endOfLightGreen = 220;
+
+    console.log( (Math.PI + (Math.PI / 360 * startOfGreen)),  0 - (Math.PI / 360 * 10))
+    console.log( (Math.PI + (Math.PI / 360 * endOfGreen)),  0 - (Math.PI / 360 * 10))
+    console.log( (Math.PI + (Math.PI / 360 * endOfOrange)),  0 - (Math.PI / 360 * 10))
+
 /*         82,240,55
         198, 111, 0 */
 
     drawSpeedometerPart(options, 1.0, "rgb(255, 0, 0)", startOfGreen);
-    drawSpeedometerPart(options, 0.9, "rgb(198, 111, 0)", endOfGreen);
-    drawSpeedometerPart(options, 0.9, "rgb(82,240,55) ", endOfOrange);
+    drawSpeedometerPart(options, 0.9, "rgb(198, 111, 0)", endOfYellow);
+    drawSpeedometerPart(options, 0.9, "rgb(255, 255, 0)", endOfGreen);
+    drawSpeedometerPart(options, 0.9, "rgb(82,240,55) ", endOfLightGreen);
+    drawSpeedometerPart(options, 0.9, "rgb(13, 156, 0) ", endOfOrange);
 
-    drawSpeedometerPart(options, 0.9, "rgb(255, 255, 0)", endOfYellow);
-    drawSpeedometerPart(options, 0.9, "rgb(13, 156, 0) ", endOfLightGreen);
+
+   ///
 
 
 
