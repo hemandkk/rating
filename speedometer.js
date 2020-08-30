@@ -275,7 +275,7 @@ function drawTextMarkers(options) {
         innerTickY = 0,
         iTick = 0,
         gaugeOptions = options.gaugeOptions,
-        iTickToPrint = 00;
+        iTickToPrint = '';
 
     applyDefaultContextSettings(options);
 
@@ -284,36 +284,42 @@ function drawTextMarkers(options) {
     options.ctx.textBaseline = 'top';
 
     options.ctx.beginPath();
-
+    tickTexts=[
+        'Very Poor', 
+        'Poor',
+        'Ok',
+        'Good',
+        'Excellent'
+    ]
     // Tick every 20 (small ticks)
     for (iTick = 10; iTick < 180; iTick += 20) {
-
         innerTickX = gaugeOptions.radius - (Math.cos(degToRad(iTick)) * gaugeOptions.radius);
         innerTickY = gaugeOptions.radius - (Math.sin(degToRad(iTick)) * gaugeOptions.radius);
-
+       
         // Some cludging to center the values (TODO: Improve)
         if (iTick <= 10) {
-            options.ctx.fillText(iTickToPrint, (options.center.X - gaugeOptions.radius - 12) + innerTickX,
+            options.ctx.fillText(tickTexts[0], (options.center.X - gaugeOptions.radius - 12) + innerTickX,
                     (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY + 5);
         } else if (iTick < 50) {
-            options.ctx.fillText(iTickToPrint, (options.center.X - gaugeOptions.radius - 12) + innerTickX - 5,
+            options.ctx.fillText(tickTexts[1], (options.center.X - gaugeOptions.radius - 12) + innerTickX - 5,
                     (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY + 5);
         } else if (iTick < 90) {
-            options.ctx.fillText(iTickToPrint, (options.center.X - gaugeOptions.radius - 12) + innerTickX,
+            options.ctx.fillText(tickTexts[2], (options.center.X - gaugeOptions.radius - 12) + innerTickX,
                     (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY);
         } else if (iTick === 90) {
-            options.ctx.fillText(iTickToPrint, (options.center.X - gaugeOptions.radius - 12) + innerTickX + 4,
+            options.ctx.fillText(tickTexts[3], (options.center.X - gaugeOptions.radius - 12) + innerTickX + 4,
                     (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY);
         } else if (iTick < 145) {
-            options.ctx.fillText(iTickToPrint, (options.center.X - gaugeOptions.radius - 12) + innerTickX + 10,
+            options.ctx.fillText(tickTexts[4], (options.center.X - gaugeOptions.radius - 12) + innerTickX + 10,
                     (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY);
-        } else {
+        }/* else {
             options.ctx.fillText(iTickToPrint, (options.center.X - gaugeOptions.radius - 12) + innerTickX + 15,
                     (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY + 5);
-        }
+        }*/
 
         // MPH increase by 10 every 20 degrees
         //iTickToPrint += Math.round(2160 / 9);
+        console.log(iTickToPrint)
          iTickToPrint += 10;
     }
 
@@ -351,10 +357,12 @@ function drawSpeedometerColourArc(options) {
     var startOfGreen = 10,
         endOfGreen = 200,
         endOfOrange = 280;
+/*         82,240,55
+        198, 111, 0 */
 
-    drawSpeedometerPart(options, 1.0, "rgb(204,254,255)", startOfGreen);
-    drawSpeedometerPart(options, 0.9, "rgb(2,254,255)", endOfGreen);
-    drawSpeedometerPart(options, 0.9, "rgb(1,127,127) ", endOfOrange);
+    drawSpeedometerPart(options, 1.0, "rgb(255, 0, 0)", startOfGreen);
+    drawSpeedometerPart(options, 0.9, "rgb(198, 111, 0)", endOfGreen);
+    drawSpeedometerPart(options, 0.9, "rgb(82,240,55) ", endOfOrange);
 
 }
 
