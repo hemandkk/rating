@@ -120,9 +120,9 @@ function drawBackground(options) {
      */
    var i = 0;
 
-    //options.ctx.globalAlpha = 0.2;
-    options.ctx.fillStyle = "rgb(0,0,0)";
-    //options.ctx.fillStyle = "rgb(255, 255, 255)";
+    options.ctx.globalAlpha = 0.2;
+    //options.ctx.fillStyle = "rgb(0,0,0)";
+    options.ctx.fillStyle = "rgb(255, 255, 255)";
 
     // Draw semi-transparent circles
     for (i = 180; i < 210; i++) {
@@ -149,6 +149,19 @@ function applyDefaultContextSettings(options) {
     options.ctx.globalAlpha = 0.5;
     options.ctx.strokeStyle = "rgb(255, 255, 255)";
     options.ctx.fillStyle = 'rgb(255,255,255)';
+}
+
+
+function applyDefaultContextSettingsText(options) {
+    /* Helper function to revert to gauges
+     * default settings
+     */
+
+    options.ctx.lineWidth = 2;
+    options.ctx.globalAlpha = 1;
+    options.ctx.strokeStyle = "rgb(255, 255, 255)";
+   // options.ctx.fillStyle = 'rgb(255,255,255)';
+    options.ctx.fillStyle = 'rgb(0,0,0)';
 }
 
 function drawSmallTickMarks(options) {
@@ -278,10 +291,11 @@ function drawTextMarkers(options) {
         gaugeOptions = options.gaugeOptions,
         iTickToPrint = '';
 
-    applyDefaultContextSettings(options);
+   // applyDefaultContextSettings(options);
+    applyDefaultContextSettingsText(options);
 
     // Font styling
-    options.ctx.font = 'italic 10px sans-serif';
+    options.ctx.font = ' bold 12px sans-serif';
     options.ctx.textBaseline = 'top';
 
     options.ctx.beginPath();
@@ -299,20 +313,22 @@ function drawTextMarkers(options) {
         innerTickY = gaugeOptions.radius - (Math.sin(degToRad(iTick)) * gaugeOptions.radius);
       // console.log(iTick)
         // Some cludging to center the values (TODO: Improve)
+        /*            options.ctx.fillText(tickTexts[0], (options.center.X - gaugeOptions.radius - 18) + innerTickX- 35,
+                    (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY + 5);*/ 
         if (iTick <= 10) {
-            options.ctx.fillText(tickTexts[0], (options.center.X - gaugeOptions.radius - 12) + innerTickX- 35,
+            options.ctx.fillText(tickTexts[0], (options.center.X - gaugeOptions.radius - 22) + innerTickX- 35,
                     (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY + 5);
         } else if (iTick <= 50) {
-            options.ctx.fillText(tickTexts[1], (options.center.X - gaugeOptions.radius - 12) + innerTickX - 5,
+            options.ctx.fillText(tickTexts[1], (options.center.X - gaugeOptions.radius - 25) + innerTickX - 5,
                     (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY + 5);
         } else if (iTick <= 90) {
             options.ctx.fillText(tickTexts[2], (options.center.X - gaugeOptions.radius - 12) + innerTickX,
                     (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY);
         } else if (iTick === 130) {
-            options.ctx.fillText(tickTexts[3], (options.center.X - gaugeOptions.radius - 12) + innerTickX + 4,
+            options.ctx.fillText(tickTexts[3], (options.center.X - gaugeOptions.radius - 5) + innerTickX + 4,
                     (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY);
         } else if (iTick <= 170) {
-            options.ctx.fillText(tickTexts[4], (options.center.X - gaugeOptions.radius - 12) + innerTickX + 10,
+            options.ctx.fillText(tickTexts[4], (options.center.X - gaugeOptions.radius - 5) + innerTickX + 10,
                     (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY);
             
            // console.log( (options.center.X - gaugeOptions.radius - 12) + innerTickX + 10, (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY)
@@ -320,7 +336,7 @@ function drawTextMarkers(options) {
             options.ctx.fillText(iTickToPrint, (options.center.X - gaugeOptions.radius - 12) + innerTickX + 15,
                     (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY + 5);
         }*/
-        console.log( (options.center.X - gaugeOptions.radius - 12) + innerTickX + 10, (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY)
+      //  console.log( (options.center.X - gaugeOptions.radius - 12) + innerTickX + 10, (gaugeOptions.center.Y - gaugeOptions.radius - 12) + innerTickY)
 
        // options.ctx.fillStyle = "#FF0000";
         // MPH increase by 10 every 20 degrees
@@ -330,6 +346,8 @@ function drawTextMarkers(options) {
     }
 
     options.ctx.stroke();
+
+
 }
 
 function drawSpeedometerPart(options, alphaValue, strokeStyle, startPos) {
@@ -340,7 +358,7 @@ function drawSpeedometerPart(options, alphaValue, strokeStyle, startPos) {
     options.ctx.beginPath();
 
     options.ctx.globalAlpha = alphaValue;
-    options.ctx.lineWidth = 12;
+    options.ctx.lineWidth = 20;
     options.ctx.strokeStyle = strokeStyle;
 
     options.ctx.arc(options.center.X,
@@ -349,7 +367,6 @@ function drawSpeedometerPart(options, alphaValue, strokeStyle, startPos) {
         Math.PI + (Math.PI / 360 * startPos),
         0 - (Math.PI / 360 * 10),
         false);
-
     options.ctx.stroke();
 }
 
@@ -379,9 +396,13 @@ function drawSpeedometerColourArc(options) {
     drawSpeedometerPart(options, 0.9, "rgb(82,240,55) ", endOfLightGreen);
     drawSpeedometerPart(options, 0.9, "rgb(13, 156, 0) ", endOfOrange);
 
+   /// options.fillText('amit',options.center.X,options.center.Y+4);
+    //draw arc text
+   // drawTextAlongArc(options.ctx, "Very Poor", options.center.X,options.center.Y, options.levelRadius,.4)
+   // console.log(options.center.X,options.center.Y)
+
 
    ///
-
 
 
 }
@@ -446,7 +467,8 @@ function drawNeedle(options) {
         endNeedleY = gaugeOptions.radius - (Math.sin(iSpeedAsAngleRad) * gaugeOptions.radius),
         toX = (options.center.X - gaugeOptions.radius) + endNeedleX,
         toY = (gaugeOptions.center.Y - gaugeOptions.radius) + endNeedleY,
-        line = createLine(fromX, fromY, toX, toY, "rgb(127, 127, 127)", 5, 0.6);
+        line = createLine(fromX, fromY, toX, toY, "rgb(0, 0, 0)", 5, 0.6);
+       // line = createLine(fromX, fromY, toX, toY, "rgb(127, 127, 127)", 5, 0.6);
 
     drawLine(options, line);
 
@@ -526,6 +548,7 @@ function draw() {
 
         // Draw the needle and base
         drawNeedle(options);
+
         
     } else {
         alert("Canvas not supported by your browser!");
@@ -578,4 +601,21 @@ function drawWithInputValue() {
     }
 }
 
+/*arc text*/
+function drawTextAlongArc(context, str, centerX, centerY, radius, angle) {
+    var len = str.length, s;
+    context.save();
+    context.translate(centerX, centerY);
+    context.rotate(-1 * angle / 2);
+    context.rotate(-1 * (angle / len) / 2);
+    for(var n = 0; n < len; n++) {
+        context.rotate(angle / len);
+        context.save();
+        context.translate(0, -1 * radius);
+        s = str[n];
+        context.fillText(s, 0, 0);
+        context.restore();
+    }
+    context.restore();
+} 
 
