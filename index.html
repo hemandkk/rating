@@ -3,14 +3,28 @@
     <meta charset="utf-8" />
     <title>Speedometer HTML5 Canvas</title>
     <script src="./speedometer.js"></script>
+    <style>
+        .imoji{
+            width: 4%;
+        }
+    </style>
+
 </head>
 <body onload='draw(0);'>
     <canvas id="speedometer" width="440" height="220">Canvas not available.</canvas>
+    <div>
+        <a href=""><img class="imoji" src="E1.png"/></a>
+        <a href=""><img class="imoji" src="E2.png"/></a>
+        <a href=""><img class="imoji" src="E3.png"/></a>
+        <a href=""><img class="imoji" src="E4.png"/></a>
+        <a href=""><img class="imoji" src="E5.png"/></a>
+    </div>
   <div>
         <form id="drawTemp">
             <input type="text" id="txtSpeed" name="txtSpeed" value="20" maxlength="2"/>
             <input type="button" value="Draw" onclick="drawWithInputValue();">
         </form>
-    </div>  
+    </div> 
+
 </body>
 </html>
