@@ -4,27 +4,112 @@
     <title>Speedometer HTML5 Canvas</title>
     <script src="./speedometer.js"></script>
     <style>
+        .outer{
+            width: 400px;
+            margin-left: 50px;
+
+        }
+        .inner-parent{
+            width: 80px;
+            float: left;
+        }
         .imoji{
-            width: 4%;
+           width: 55px;
+        }
+        .rate-item{
+           /* width:10%;*/
+            display: block;
+            height: 65px;
+            text-align: center;
+        }
+        .rate-line1{
+            position: relative;
+            bottom: 0;
+            height: 5px;
+            width: 100%;
+            display: block;
+            background-color: #32a852;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+        .rate-line2{
+            position: relative;
+            bottom: 0;
+            height: 5px;
+            display: block;
+            width: 100%;
+            background-color: #f2ef1b;
+        }
+        .rate-line3{
+            position: relative;
+            bottom: 0;
+            height: 5px;
+            display: block;
+            width: 100%;
+            background-color: #f2951b;
+        }
+        .rate-line4{
+            position: relative;
+            bottom: 0;
+            height: 5px;
+            display: block;
+            width: 100%;
+            background-color: #f55022;
+        }
+        .rate-line5{
+            position: relative;
+            bottom: 0;
+            height: 5px;
+            width: 100%;
+            display: block;
+            background-color: #f52222;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
         }
     </style>
 
 </head>
 <body onload='draw(0);'>
-    <canvas id="speedometer" width="440" height="220">Canvas not available.</canvas>
-    <div>
-        <a href=""><img class="imoji" src="E1.png"/></a>
-        <a href=""><img class="imoji" src="E2.png"/></a>
-        <a href=""><img class="imoji" src="E3.png"/></a>
-        <a href=""><img class="imoji" src="E4.png"/></a>
-        <a href=""><img class="imoji" src="E5.png"/></a>
+    <canvas id="speedometer" width="480" height="220">Canvas not available.</canvas>
+    <div class="outer">
+        <div class="inner-parent">
+            <div class="rate-item">
+               <img class="imoji" src="R1.png"/>
+            </div>
+            <div class="rate-line1"></div>
+        </div>
+        <div class="inner-parent">
+            <div class="rate-item">
+               <img class="imoji" src="R2.png"/>
+            </div>
+            <div class="rate-line2"></div>
+        </div>
+        <div class="inner-parent">
+            <div class="rate-item">
+                <img class="imoji" src="R3.png"/>
+            </div>
+            <div class="rate-line3"></div>
+        </div>
+        <div class="inner-parent">
+            <div class="rate-item">
+                <img class="imoji" src="R4.png"/>
+            </div>
+            <div class="rate-line4"></div>
+        </div >
+        <div class="inner-parent">
+            <div class="rate-item">
+                <img class="imoji" src="R5.png"/>
+            </div>
+        <div class="rate-line5"></div>
     </div>
+ </div>
+
   <div>
         <form id="drawTemp">
             <input type="text" id="txtSpeed" name="txtSpeed" value="20" maxlength="2"/>
             <input type="button" value="Draw" onclick="drawWithInputValue();">
         </form>
     </div> 
-
+ 
 </body>
 </html>
