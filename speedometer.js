@@ -120,7 +120,7 @@ function drawBackground(options) {
      */
    var i = 0;
 
-    options.ctx.globalAlpha = 0.2;
+    options.ctx.globalAlpha = 0.0;
     //options.ctx.fillStyle = "rgb(0,0,0)";
     options.ctx.fillStyle = "rgb(255, 255, 255)";
 
